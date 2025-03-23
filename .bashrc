@@ -21,9 +21,28 @@ eval "$(register-python-argcomplete pipx)"
 
 eval "$(starship init bash)"
 
-eval "$(ssh-agent -s)" > /dev/null 2>&1
+# SSH Agent Management
+env=~/.ssh/agent.env
 
-ssh-add ~/.ssh/id_ed25519 > /dev/null 2>&1
+agent_load_env() { test -f "$env" && . "$env" >| /dev/null; }
+
+agent_start() {
+    (umask 077; ssh-agent >| "$env")
+    . "$env" >| /dev/null
+    ssh-add ~/.ssh/id_ed25519 2>/dev/null
+}
+
+agent_load_env
+
+# Check if agent is running
+if ! ps -p "$SSH_AGENT_PID" > /dev/null 2>&1; then
+    agent_start
+elif [ -n "$SSH_AUTH_SOCK" ] && ! ssh-add -l > /dev/null 2>&1; then
+    # Agent is running but has no keys loaded
+    ssh-add ~/.ssh/id_ed25519 2>/dev/null
+fi
+
+unset env
 
 gcm() {
     git commit -m "$*"
