@@ -1,0 +1,8 @@
+*
+!.gitignore
+!.bashrc
+!.config/nvim/*
+!.config/bspwm/*
+!.config/polybar/*
+!.config/rofi/*
+!.config/starship.toml
