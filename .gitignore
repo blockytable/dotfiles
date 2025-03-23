@@ -6,10 +6,11 @@
 !.bashrc
 
 !.config/
-.config/*
 
-!.config/nvim/
-!.config/bspwm/
-!.config/polybar/
-!.config/rofi/
+!.config/nvim
+!.config/bspwm
+!.config/polybar
+!.config/rofi
 !.config/starship.toml
+
+
