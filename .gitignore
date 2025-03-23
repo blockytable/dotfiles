@@ -1,7 +1,7 @@
 *
 !.gitignore
 !.bashrc
-!.config/nvim/
+#!.config/nvim/
 !.config/bspwm/
 !.config/polybar/
 !.config/rofi/
