@@ -19,8 +19,6 @@ export PATH="$PATH:/home/hosni/.local/bin"
 
 eval "$(register-python-argcomplete pipx)"
 
-eval "$(starship init bash)"
-
 # SSH Agent Management
 env=~/.ssh/agent.env
 
@@ -47,5 +45,6 @@ unset env
 gcm() {
     git commit -m "$*"
 }
+
 alias p='git push'
 alias a='git add .'
